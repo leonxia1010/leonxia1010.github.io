@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import Line from './Line';
 import Input from './Input';
+import data from './db.json';
 
 const API_URL = import.meta.env.DEV
   ? '/api/words'
@@ -24,14 +25,8 @@ export default function Board() {
 
   // Fetch data after loading
   useEffect(() => {
-    const fetchWords = async () => {
-      const response = await fetch(API_URL);
-      const word = await response.json(API_URL);
-      const selectedWord = word[Math.floor(Math.random() * word.length)];
-      setRandomWord(selectedWord);
-    };
-
-    fetchWords();
+    const selectedWord = data[Math.floor(Math.random() * data.length)];
+    setRandomWord(selectedWord);
     initializeInput();
   }, [resetCount]);
 
