@@ -3,7 +3,9 @@ import './App.css';
 import Line from './Line';
 import Input from './Input';
 
-const API_URL = '/api/words';
+const API_URL = import.meta.env.DEV
+  ? '/api/words'
+  : 'https://api.frontendexpert.io/api/fe/wordle-words';
 const charLength = 5;
 
 export default function Board() {
