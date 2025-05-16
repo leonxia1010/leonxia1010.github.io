@@ -1,27 +1,19 @@
-import React from 'react';
-
-function Line({ guess, charLength, isChecked, randomWord }) {
+import React, { forwardRef } from 'react';
+const Line = forwardRef(({ guess, charLength }, lineRef) => {
   const tiles = [];
   for (let i = 0; i < charLength; i++) {
-    let className = 'tiles ';
-    if (isChecked) {
-      if (guess[i] === randomWord[i]) {
-        className += 'green';
-      } else if (randomWord.includes(guess[i])) {
-        className += 'yellow';
-      } else {
-        className += 'grey';
-      }
-    }
-
     tiles.push(
-      <div className={className} key={i}>
+      <div className='tiles' key={i}>
         {guess[i]}
       </div>
     );
   }
 
-  return <div className='line'>{tiles}</div>;
-}
+  return (
+    <div className='line' ref={lineRef}>
+      {tiles}
+    </div>
+  );
+});
 
 export default Line;

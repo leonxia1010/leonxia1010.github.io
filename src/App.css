@@ -1,41 +1,103 @@
-.tiles {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #383838;
+  background: #22c1c3;
+  background: linear-gradient(
+    180deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
+  overflow: hidden;
+  padding: 30px;
+}
+
+#root {
+  display: flex;
+  max-width: 1080px;
+}
+
+.result {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.line {
-  display: flex;
-  gap: 5px;
-  margin-bottom: 5px;
-}
-
-.input-container {
-  padding: 5px;
-  display: flex;
-  gap: 5px;
-}
-
-.input {
-  width: 40px;
-  height: 60px;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
+  color: rgba(253, 8, 8, 0.977);
+  font-size: 3rem;
   text-align: center;
+  font-weight: 700;
 }
 
-/* .input:valid {
-  border: 1px solid blue;
-} */
+.main-container {
+  max-width: 1080px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto 50px;
+}
+
+.game-title {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.game-rule {
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+.game-answer {
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 1rem auto 20px;
+}
+
+.random-word {
+  font-size: 2rem;
+  color: yellow;
+}
+
+.tiles {
+  width: 80px;
+  height: 80px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 
 .green {
-  background-color: green;
+  background-color: rgba(13, 196, 13, 0.854);
+  color: #fff;
+  font-weight: 600;
+  font-size: 2.5rem;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  position: relative;
+}
+
+.green::after {
+  content: '✔';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  font-size: 1.5rem;
+  color: rgb(255, 0, 0);
+  bottom: 10px;
+  right: 0;
+  transform: translate(-50%, -50%);
 }
 
 .yellow {
@@ -43,5 +105,156 @@
 }
 
 .grey {
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.218);
+  color: rgba(255, 0, 0, 0.571);
+}
+
+.line {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.input-container {
+  display: flex;
+  gap: 10px;
+  height: 150px;
+}
+
+.error,
+.answer {
+  color: white;
+  background-color: rgba(255, 0, 0, 0.682);
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 1rem;
+}
+
+.input {
+  width: 70px;
+  height: 100px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  text-align: center;
+  caret-color: transparent;
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  font-size: 1.5rem;
+  background-color: transparent;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.input:focus {
+  border-radius: 10px;
+  outline: none;
+  border: 3px solid #a0d8ef;
+  width: 75px;
+  height: 105px;
+  background-color: #fff;
+  color: #383838;
+}
+
+input:disabled {
+  background-color: #e0e0e0;
+  color: #fff9f9;
+  border: 1px solid #999999;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.valid {
+  border-color: #a0d8ef;
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  color: #383838;
+  position: relative;
+}
+
+.button {
+  background-color: rgba(255, 0, 0, 0.571);
+  color: white;
+  border: none;
+  padding: 5px 20px;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.5s ease;
+}
+
+.button:hover {
+  background-color: rgb(255, 0, 0);
+}
+
+@media (max-width: 576px) {
+  .main-container {
+    margin-top: 0;
+  }
+
+  .game-title {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .game-rule {
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .game-answer {
+    color: #fff;
+    font-size: 1rem;
+    margin: 1rem auto 20px;
+  }
+
+  .random-word {
+    font-size: 1.5rem;
+    color: yellow;
+  }
+
+  .tiles {
+    max-width: 50px;
+    max-height: 50px;
+    font-size: 1.5rem;
+  }
+  .form {
+    margin-top: 10px;
+  }
+
+  .input-container {
+    gap: 5px;
+    margin-bottom: 5px;
+  }
+  .input {
+    max-width: 40px;
+    max-height: 70px;
+    margin-top: 10px;
+  }
+
+  .input:focus {
+    max-width: 45px;
+    max-height: 75px;
+  }
+
+  .result {
+    display: none;
+  }
+
+  .input-container {
+    max-height: 80px;
+  }
 }
